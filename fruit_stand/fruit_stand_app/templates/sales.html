@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Frutas</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Vendedor {{name}}</h1>
+    <form action="{% url 'report' %}" method='POST' style="display: flex; justify-content: center;">
+        {% csrf_token %}
+        <input type="hidden" value= "{{name}}" name="name_user"> 
+        <input type="submit" value="Relatorio">
+    </form>
+    
+    <form action="{% url 'search' %}" method="POST" style=" display:flex; justify-content: center; margin: 10px;">
+        {% csrf_token %} 
+        Nome:<input type="text", name="search"> 
+        Classificação:<select name="classification">
+            <option value=""></option>
+            <option value="Extra">Extra</option>
+            <option value="De Primeira">De Primeira</option>
+            <option value="De Segunda">De Segunda</option>
+            <option value="De Terceira">De Terceira</option>
+        </select>
+        Fresca:<select name="fresh">
+            <option value=""></option>
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+        </select>
+        Quantidade:<input type="number" name="amount">
+        Valor:<input type="number" name="value"> 
+        <input type="submit" value="Buscar">
+    </form>
+    <table border="1" style="width: 500px; margin: auto; margin-top: 10px;">
+        <tr>
+            <th>Nome</th>
+            <th>Classificação</th>
+            <th>Fresca</th>
+            <th>Quantidade</th>
+            <th>Valores</th>
+            <th>Vender</th>
+        </tr>
+        {% for fruit in fruits %}
+        <input type="hidden", value="{{fruit.name}}", name="name_fruit">
+        <tr>
+            {% csrf_token %}
+            <td>{{fruit.name}}</td>
+            <td>{{fruit.classification}}</td>
+            <td>{{fruit.fresh}}</td>
+            <td>{{fruit.amount}}</td>
+            <td>R${{fruit.value}}</td>  
+            <td>
+                <form action="{% url 'sell' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ fruit.name }}" name="name_fruit">
+                    <input type="hidden" value= "{{name}}" name="name_user"> 
+                    <input type="submit" value="Vender">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

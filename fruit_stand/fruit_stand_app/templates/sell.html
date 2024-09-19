@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Vender</title>
+    {% load static %}
+</head>
+<body>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <h1>Vender</h1>
+        <h3>Fruta:{{name_fruit}}</h3>
+        <form action="{% url 'sell_fruit' %}", method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="{{name_fruit}}" name="name_fruit">
+            <input type="hidden" value="{{name}}" name="name_user">
+            Quantidade: <input type="number", name="amount">
+            <select name="desconto">
+                <option value=""></option>
+                <option value="5">5%</option>
+                <option value="10">10%</option>
+                <option value="15">15%</option>
+                <option value="20">20%</option>
+                <option value="25">25%</option>
+            </select>
+            <input type="submit", value="Vender">
+            <p style="text-align: center;">{{message}}</p>
+        </form>
+        <a href="{% url 'exit' %}"><button>Voltar</button></a>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

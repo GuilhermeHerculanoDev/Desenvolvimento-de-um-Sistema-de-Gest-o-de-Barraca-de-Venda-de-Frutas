@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Relatorio Do Vendedor</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Relatorio</h1>
+    <table border="1" style="width: 500px; margin: auto;">
+        <tr>
+            <th>Fruta</th>
+            <th>Quantidade</th>
+            <th>Valor</th>
+            <th>Data</th>
+        </tr>
+        <tr>
+        {% for report in reports %}        
+            {% csrf_token %}
+            <td>{{report.fruit}}</td>  
+            <td>{{report.amount}}</td>
+            <td>R${{report.value}}</td>
+            <td>{{report.date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 20px;">
+        <a href="{% url 'exit' %}" >
+            <button>Voltar</button>
+        </a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

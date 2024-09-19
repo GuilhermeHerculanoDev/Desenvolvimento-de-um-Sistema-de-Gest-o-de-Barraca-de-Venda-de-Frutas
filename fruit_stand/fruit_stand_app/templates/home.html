@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <title>Home</title>
+</head>
+<body>
+    <header style="text-align: center; padding: 10px;">
+        <h1>Vendas de Frutas</h1>
+    </header>
+
+    <div style="display: flex; justify-content: center;">
+        <button>
+            <img style="display: flex; flex-direction: column; height: 50px; width: 50px;" src="https://cdn-icons-png.flaticon.com/512/74/74472.png">
+            <a href="{% url 'screen_login' %}">Login</a>
+        </button>
+        <button>
+            <img style="display: flex; flex-direction: column; height: 50px; width: 50px; " src="https://icons.iconarchive.com/icons/icons8/windows-8/512/Users-Administrator-icon.png">
+            <a href="{% url '_screen_register' %}">Cadastro</a>
+        </button>
+        <h1>{{mensseger}}</h1>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
